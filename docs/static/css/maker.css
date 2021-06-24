@@ -1,0 +1,25 @@
+.head {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+.maker_block {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    background-color:#ecf0f1;
+    margin-top: 10px;
+    margin-right: 200px;
+}
+
+html, body {
+	height:100%;
+	width:100%;
+    margin:0;
+    background-color: #cdcdcd;
+
+}
+

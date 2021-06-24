@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>新增網頁</title>
+        <link type="text/css" rel="stylesheet" href="http://itc.nkust.edu.tw/static/css/common.css">
+        <link type="text/css" rel="stylesheet" href="http://itc.nkust.edu.tw/static/css/admin_add_new_page.css">
+        <link type="image/jpg" rel="icon" href="http://itc.nkust.edu.tw/static/icon">    
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+        <script src="http://itc.nkust.edu.tw/static/js/admin_add_new_page.js"></script>
+    </head>
+    <body>
+        <form class="upload_form">
+            <input type="file" id="select_file" name="file" ><br>
+            <input type="button" id="send" value="上傳">
+        </form>
+
+        <script>
+            let sender = document.getElementById("send");
+
+
+            showUI();
+            sender.setAttribute("onclick", "sendFile()");
+/*
+            function send() {
+                let formObj = document.querySelector("form");
+                let formData = new FormData(formObj);
+                let data = {};
+                data["content"] = formData.get("file");
+
+                $.ajax({
+                    type:"POST",
+                    dataType:"application/json",
+                    data:JSON.stringify(data),
+                    contentType:"application/json",
+                    success:function(res) {
+                        alert(res["status"]);
+                    },
+
+                    error: function(errorRes) {
+                        alert(errorRes["status"]);
+                    }
+                })
+            }*/
+        </script>
+    </body>
+</html>

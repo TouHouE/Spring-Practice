@@ -1,0 +1,52 @@
+<html>
+    <head>
+
+        <title>Admin Login</title>
+        <meta charset="UTF-8">
+        <link type="text/css" rel="stylesheet" href="../static/css/admin_login.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/common.css">
+        <link type="image/jpg" rel="icon" href="../static/icon">    
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <form class="login_Form">
+            <label>User Name:</label><input type="text" name="user_name"><br>
+            <label>Password:</label><input type="password" name="password"><br><br>
+            <input type="button" value="Submit" id="submit">
+        </form>
+
+        <script>
+            let sendData = document.getElementById("submit");
+            sendData.onclick = function() {
+                let formObj = document.querySelector("form");
+                let formData = new FormData(formObj);
+
+                let data = {};
+                data["user_name"] = formData.get("user_name");
+                data["password"] = formData.get("password");
+
+
+                $.ajax({
+                    type:"POST",
+                    url:"http://itc.nkust.edu.tw/admin/post",
+                    data:JSON.stringify(data),
+                    dataType:"json",
+                    contentType:"application/json;charset=utf-8",
+                    success: function(res) {
+                        window.location = res["url"];
+                    },
+                    error: function(res) {
+                        let test = res.getResponseHeader().data;
+                        alert(test);
+                    }
+
+                })
+            }
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin</title>
+        <link type="image/jpg" rel="icon" href="../static/icon">
+        <link type="text/css" rel="stylesheet" href="../static/css/common">
+        <link type="text/css" rel="stylesheet" href="../static/css/admin">
+	<!--        <script src="http://itc.nkust.edu.tw/static/js/adminControl.js"></script>-->
+	<!--	<script src="http://itc.nkust.edu.tw/static/js/adminBtn.js"></script>-->
+    </head>
+    <body>
+            <!--left Panel-->
+            <div id="menu_container">
+                <!--menu button-->
+                <div class="btncss">
+                    <input style="font-size: 20px;" type="button" value="隱藏選單" id="menuState">
+                </div>
+
+                <!--menu-->
+                <div id="selector" class="selector" >
+                    <label id="add_page">新增網頁</label>
+                    <a href="googel.com">case1</a>
+                    <a href="">case2</a>
+                </div>
+            </div>
+
+            <!--right panel-->
+            <div id="container" class="block" style="width:80%;">
+ 
+            </div>
+
+
+            <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+	    <script type="text/javascript" src="http://itc.nkust.edu.tw/static/js/adminControl.js"></script>
+	    <script type="text/javascript" src="http://itc.nkust.edu.tw/static/js/adminBtn.js"></script>
+            <script>
+                var body = document.querySelector("body");
+                var container = document.getElementById("container");
+                var menu = document.getElementById("selector");
+
+
+                let addPageBtn = document.getElementById("add_page");
+                addPageBtn.setAttribute("onclick", "showUI()");
+
+
+            </script>
+    </body>
+</html>

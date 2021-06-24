@@ -1,0 +1,21 @@
+.funcArea {
+    height: 100%;
+    width: 100%;
+}
+
+.funcRow {
+    background-color: white;
+    display: inline;
+    
+    text-align: center;
+}
+
+.funcElement {
+    text-align: center;
+    width: 60px;
+    height: 50px;
+}
+
+body {
+    background-color: #565656;
+}

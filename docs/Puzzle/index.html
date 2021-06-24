@@ -1,0 +1,153 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h5><!--serial--></h5>
+    <canvas id="game_board" width="1000" height="800"></canvas>
+    <script src="js/make_puzzle.js" defer></script>
+    <script src="js/draw.js"></script>
+ 
+    <script>
+        var can = document.getElementById("game_board");
+        var ctx = can.getContext("2d");
+
+        var isMob = //false;
+
+        class Puzzle {
+            constructor(img, x, y, boardWidth, boardHeight) {
+                this.X = x;
+                this.Y = y;
+                this.width = img.width; 
+                this.height = img.height;
+                this.isClick = false;
+                this.clickXDis;
+                this.clickYDis;
+                this.boardWidth = boardWidth;
+                this.boardHeight = boardHeight;
+            }
+
+            move(newX, newY) {
+
+                if(newX - this.clickXDis + this.width < this.boardWidth && newX - this.clickXDis > 0) {
+                    this.X = newX - this.clickXDis;
+                }
+                
+                if(newY - this.clickYDis + this.height < this.boardHeight && newY - this.clickYDis > 0) {
+                    this.Y = newY - this.clickYDis;
+                }
+                
+            }
+
+
+            setClickPoint(mouseX, mouseY) {
+                this.clickXDis = mouseX - this.X;
+                this.clickYDis = mouseY - this.Y;
+                console.log("X distance:" + this.clickXDis + "Y distance" + this.clickYDis);
+            }
+
+            inRange(mouseX, mouseY) {
+                console.log("mouse(X, Y) = (" + mouseX + ", " + mouseY + ")");
+                console.log("puzzle(X, Y) = (" + this.X + ", " + this.Y + ")");
+                console.log("size(W, H) = (" + this.width + ", " + this.height + ")");
+
+
+                if(mouseX > this.X && mouseX < (this.width + this.X) && mouseY > this.Y && mouseY < (this.Y + this.height)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+
+        var img = new Image();
+        img.src="http://www.qdtiancheng.com/p/mhjvjf-ai/04.jpg";
+        img.onload = function() {
+            
+            boardReset();
+            var puzzle = new Puzzle(img, 0, 0, can.width, can.height);
+            
+            ctx.drawImage(img, puzzle.X, puzzle.Y);
+
+            //move start
+            can.addEventListener("__mousedown__", function(event) {
+                
+                if(isMob) {
+                    if(puzzle.inRange(event.touches[0].clientX, event.touches[0].clientY)) {
+                        event.preventDefault();
+                        puzzle.isClick = true;
+                        puzzle.setClickPoint(event.touches[0].clientX, event.touches[0].clientY);
+                    }
+                } else {
+                    if(puzzle.inRange(event.pageX, event.pageY)) {
+                 
+                        puzzle.isClick = true;
+                        puzzle.setClickPoint(event.pageX, event.pageY);
+             
+                    }
+                }
+            
+            });
+
+
+            //move track mean -> puzzle move
+            can.addEventListener("__mousemove__", function(event) {
+                if(puzzle.isClick) {
+                    if(isMob) {
+                        event.preventDefault();
+                        puzzle.move(event.touches[0].clientX, event.touches[0].clientY);
+                        
+                        ctx.clearRect(0, 0, can.width, can.height);
+                        //boardReset();
+                        ctx.drawImage(img, puzzle.X, puzzle.Y);
+                    } else {
+                        puzzle.move(event.pageX, event.pageY);
+                        ctx.clearRect(0, 0, can.width, can.height);
+                        //boardReset();
+                        ctx.drawImage(img, puzzle.X, puzzle.Y);
+                    }
+                }
+               // console.log("MouseMove !");
+               // console.log("event page:x" + event.touches[0].clientX + "Y:" + event.touches[0].clientY);
+            });
+
+            //move end
+            can.addEventListener("__mouseup__", function(event) {
+                puzzle.isClick = false;
+                
+                if(isMob) {
+                    puzzle.move(event.touches[0].clientX, event.touches[0].clientY);
+                } else {
+                    puzzle.move(event.pageX, event.pageY);
+                }
+
+                //console.log("MouseUP !");
+                //console.log("event page:x" + event.touches[0].clientX + "Y:" + event.touches[0].clientY);
+            });
+      
+      
+            function boardReset() {
+                ctx.beginPath();
+                
+                for(let i = 0; i < can.height; ++i) {
+                    ctx.moveTo(i * 5, 0);
+                    ctx.lineTo(i * 5, can.width);
+                    
+                }
+
+                for(let i = 0; i < can.width; ++i) {
+                    ctx.moveTo(0, i * 5);
+                    ctx.lineTo(can.height, i * 5);
+                }
+                ctx.stroke();
+            }
+      
+        }
+
+       
+    </script>
+</body>
+</html>

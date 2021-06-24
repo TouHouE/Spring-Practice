@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>資訊研習社</title>
+    <link type="text/css" rel="stylesheet" href="static/css/indexcss.css">
+    <link type="image/jpg" rel="icon" href="static/icon">    
+</head>
+
+<body>
+
+<div id="left" class="block" style="width:20%;">
+    <div style="width:100%; text-align:center;" id="itc">
+        <img class="user_icon" src="static/icon" width="50%" style="margin-top:20px;">
+        <h2>資訊研習社</h2>
+    </div>
+    
+    <div id="link">
+        <div class="link_bar" id="sa" onclick="tosa()">
+            <div class="link_bar_left"></div>
+            <a href="http://sa.nkust.edu.tw/">學生會網站</a>
+            <div class="link_bar_right"></div>
+        </div>
+    
+        <div class="link_bar" id="choose_course" onclick="toChooseCourse()">
+            <a href="http://aais1.nkust.edu.tw/selcrs_dp">選課系統</a>
+            <!--選課系統-->
+        </div>
+
+	<div class="link_bar" id="venue_rental">
+		<a href="http://venue.nkust.edu.tw/View/Space/SpaceRentSearch.aspx?fbclid=IwAR132LksrwZ_ja8Hcw3is_kfxLXPz1iunpEsgy8jtCq0fXo1zAkUE097lfk">場地租借系統</a>
+	</div>
+
+        <div class="link_bar" onclick="toNote()">
+            <a href="http://itc.nkust.edu.tw/note">一些東西</a>
+        </div>
+
+        <div class="link_bar" style="margin-bottom: 10px;" onclick="toMaker()">
+            <a href="http://itc.nkust.edu.tw/page/maker">開發人員</a>
+        </div>
+
+    </div>
+    
+</div>
+
+<div id="center" class="block" style="width:55%;">
+    <div id="center_container" style="width: 100%; text-align:center">
+        
+        <div id="page1" class="page" style="width: 90%; text-align:left;" href="google.com">
+            <h2>Connecting to Google</h2>
+            
+            <div>
+                <label id="page_info">
+                    This is a link
+                </label>
+            </div>
+        </div>
+    
+    </div>
+
+</div>
+
+<div id="right" class="block" style="width:25%;"></div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+        
+	<script>
+		console.log("ready");
+
+		function tosa() {
+			//let saDom = document.getElementById("sa");
+			window.location = "http://sa.nkust.edu.tw/";
+		}
+        
+		function toChooseCourse() {
+			//let ccDom = document.getElementById("choose_course");
+			window.location = "http://aais1.nkust.edu.tw/selcrs_dp";
+	        }
+        
+        	function toNote() {
+      	    		window.location = "http://itc.nkust.edu.tw/note";
+        	}
+
+		function toMaker() {
+			window.location = "http://itc.nkust.edu.tw/page/maker";
+		}
+		
+		let venue = document.getElementById("venue_rental");
+		venue.onclick = function() {
+			window.location = "http://venue.nkust.edu.tw/View/Space/SpaceRentSearch.aspx?fbclid=IwAR132LksrwZ_ja8Hcw3is_kfxLXPz1iunpEsgy8jtCq0fXo1zAkUE097lfk";
+		}
+
+        	let page1 = document.getElementById("page1");
+        	page1.onclick = function() {
+            		window.location.href = "https://www.google.com";//需要變換網域
+        	}
+	</script>
+</body>
+</html>
+

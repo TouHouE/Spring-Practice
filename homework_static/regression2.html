@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!--<link src="data/data.txt" id='pointData'>-->
+    </head>
+    <body>
+            <h3 id="group1_info" class="info"></h3>
+            <h3 id="group2_info" class="info"></h3>
+            <canvas id="coor" width="850px", height="850px"></canvas><br>
+            <!--<input type="submit" id="initData" value="Default Data" onclick='readFile("data/data.txt")'>-->
+            <!--<input type='submit' id='initData' value="Default Data" onclick='rf("data/data1.txt")'>-->
+            <input type="submit" id="data1" value="Data 1" onclick = 'readFile("http://itc.nkust.edu.tw/homework/data/data1.txt")'>
+            <input type="submit" id="clean" value="Clean" onclick="clean()">
+            <input type="file" onclick="test()" id="file">
+           
+            <script src="http://itc.nkust.edu.tw/homework/js/reg2.js"></script>
+    </body>
+</html>
+
+<!--
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
+</head>
+
+<body>
+    <div class='chartContainer' width='400px' height='400px'>
+        <canvas id="myChart" width='400px' height="400px"></canvas>
+    </div>
+    <script>
+
+        var pData = [];
+        var excelData = "";
+        var lineData = [];
+        function readFile(file) {
+            //dataIsPut = !dataIsPut;
+            var sender = new XMLHttpRequest();
+            sender.open("GET", file, false);
+            sender.onreadystatechange = function () {
+                excelData = sender.responseText;
+                putPoint();
+            }
+            sender.send();
+        }
+
+        function putPoint() {
+            var betterData = excelData.replace(new RegExp("\t{2, }\n", "gm"), "\n");
+            console.log(betterData);
+            var eachLine = betterData.split("\n");
+
+            let len = eachLine.length;
+            let str = "";
+            let sumY = 0, sumX = 0;
+
+
+            for (let i = 0; i < len - 1; ++i) {
+                let xy = eachLine[i].split("\t{1,}");
+                let xys = xy[0].split("	");
+                sumX += Number(xys[0]);
+                sumY += Number(xys[1]);
+
+                let p = {
+                    x : Number(xys[0]),
+                    y : Number(xys[1])
+                };
+
+                pData[i] = p;
+
+
+                //drawPoint(Number(xys[0]), Number(xys[1]));
+            }
+            //doRegression(sumX, sumY, len - 1);
+
+        }
+        readFile("data/data1.txt");
+        let count = 0;
+
+        function makeLine() {
+            for(let i = -400; i < 400; i += 5) {
+                let xs = i;
+                //let ys = 0.6282175506882017 * xs - 86.91502654659193;
+                let ys = 0.186685969 * xs + 29.31003054;
+                let lineP = {
+                    x : xs,
+                    y : ys
+                }
+                lineData[count++] = lineP;
+
+            }
+            count = 0;
+        }
+        makeLine();
+        const data = {
+            datasets: [{
+                label: 'Test',
+                data:pData,
+                backgroundColor:'rgb(255, 99, 132)'
+            },
+        {
+            label: "prediction line",
+            data: lineData,
+            backgroundColor: 'rgb(100, 200, 80)'
+        }],
+        };
+
+
+        const config = {
+            type: 'scatter',
+            data: data,
+            options: {
+                scalels: {
+                    x: {
+                        type: 'linear',
+                        position: 'center'
+                    },
+                    y: {
+                        type: 'linear',
+                        position: 'center'
+                    }
+                }
+            }
+        };
+
+        var chart = new Chart(document.getElementById("myChart").getContext('2d'), config);
+
+
+    </script>
+</body>
+
+</html>-->
